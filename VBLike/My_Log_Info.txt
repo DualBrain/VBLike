@@ -1,0 +1,20 @@
+Log Args 12/20/2014 4:44:14 PM
+[0] = 'C:\Users\Lyle\Documents\Unity\Projects\VBLike\VBLike\Assets\Scripts\Test.cs'
+[1] = '0'
+Handled Year arg...
+arg.Length > 1
+expressExePath != null
+unityRootDir != null
+In IsSolution Open...
+In GetExpressSolutionHandle...
+Got processes..
+Found unity processs..
+Comparing: System.Diagnostics.Process (firefox) to C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\VCSExpress.exe
+Found unity processs..
+Comparing: System.Diagnostics.Process (thgw) to C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\VCSExpress.exe
+Found unity processs..
+Comparing: System.Diagnostics.Process (Unity) to C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\VCSExpress.exe
+Returning handle..
+!IsSolutionOpen()
+Open solution and script
+Goto line

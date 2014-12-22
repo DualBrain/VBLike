@@ -1,0 +1,11 @@
+' This is a comment
+set tuple to tuple(1, 2, 3)
+set m to tuple(tuple("0", "1"), tuple("2", "3"))
+
+set m[0][0] to 55
+
+print(": " + m[0][0])
+
+def m2x2(val) do
+	return tuple(tuple(val, val), tuple(val, val))
+end

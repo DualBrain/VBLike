@@ -1,0 +1,166 @@
+print("<color=red>Hello World</color>")
+print("--Variables--")
+set i to 5
+set f to 5.5
+set s to "Hello"
+set b to true
+set b2 to false
+set i2 to i
+set tuple to tuple(i, f, s, b, b2, i2)
+set list to list(0, 1, 2)
+set v1 to vec3(1, 1, 1)
+set v2 to vec3(2, 2, 2)
+set v3 to addVec3(v1, v2)
+print(vec3ToStr(v1) + " + " + vec3ToStr(v2) + " = " + vec3ToStr(v3))
+
+print("--Matrices--")
+
+set m to m4x4(5.5)
+printM4x4(m)
+
+setAt(at(m, 0), 0, 22)
+
+printM4x4(m)
+
+print("--Logic--")
+
+if b = false do
+	print("if")
+elif b = true do
+	print("elif")
+else do
+	print("else")
+end
+
+print("Length Of Tuple: " + length(tuple))
+print("Length Of List: " + length(list))
+
+print("--Looping--")
+
+set i to 0
+while i < length(tuple) do
+	print("tuple[" + i + "] = " + at(tuple, i))
+	set i to i + 1
+end
+
+set i to 0
+while i < length(list) do
+	print("list[" + i + "] = " + at(list, i))
+	set i to i + 1
+end
+
+set str to "Hello"
+set i to 0
+while i < length(str) do
+	print("str[" + i + "] = " + at(str, i))
+	set i to i + 1
+end
+
+print("--User Defined Functions--")
+
+print("max: " + max(2, 1))
+print("min: " + min(5, 3))
+
+set r to rand(0, 5)
+print("randval: " + r)
+
+set tuple to tuple(1, 2, 3, 4, 5, 6, 7)
+printTuple(tuple)
+
+if r = 0 do
+	print("0")
+elif r = 1 do
+	print("1")
+elif r = 2 do
+	print("2")
+else do
+	print("-1")
+end
+
+print("--Types--")
+print(typeof(55))
+print(typeof(55.5))
+print(typeof("HI"))
+print(typeof(true))
+print(typeof(tuple(1, 2, 3)))
+print(typeof(list(1, 2, 3)))
+
+recursivePrint(10)
+
+def max(a, b) do
+	if a > b do
+		return a
+	end
+	return b
+end
+
+def min(a, b) do
+	if a < b do
+		return a
+	end
+	return b
+end 
+
+def recursivePrint(count) do
+	if count < 0 do
+		return 0
+	end
+	print(count)
+	recursivePrint(count - 1)
+end
+
+def printTuple(tuple) do
+	set p to ""
+	set i to 0
+	
+	while i < length(tuple) do
+		set p to p + at(tuple, i) + " "
+		set i to i + 1
+	end
+	
+	print(p)
+end
+
+def vec3(x, y, z) do
+	return tuple(x, y, z)
+end
+
+def addVec3(a, b) do
+	set x to at(a, 0) + at(b, 0)
+	set y to at(a, 1) + at(b, 1)
+	set z to at(a, 2) + at(b, 2)
+	
+	return vec3(x, y, z)
+end
+
+def subVec3(a, b) do
+	set x to at(a, 0) - at(b, 0)
+	set y to at(a, 1) - at(b, 1)
+	set z to at(a, 2) - at(b, 2)
+	
+	return vec3(x, y, z)
+end
+
+def vec3ToStr(v) do
+	set str to "(" + at(v, 0) + ", " + at(v, 1) + ", " + at(v, 2) + ")"
+	return str
+end
+
+def vec4ToStr(v) do
+	set str to "(" + at(v, 0) + ", " + at(v, 1) + ", " + at(v, 2) + ", " + at(v, 3) + ")"
+	return str
+end
+
+
+def m4x4(val) do
+	set col to tuple(val, val, val, val)
+	set m to tuple(col, col, col, col)
+	return m
+end
+
+def printM4x4(m) do
+	print(vec4ToStr(at(m, 0)))
+	print(vec4ToStr(at(m, 1)))
+	print(vec4ToStr(at(m, 2)))
+	print(vec4ToStr(at(m, 3)))
+end

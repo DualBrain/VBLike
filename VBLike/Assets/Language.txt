@@ -1,0 +1,418 @@
+set i to 5
+set f to 5.5
+set s to 'Hello'
+set b to true
+set tuple to tuple(0, 1, 2)
+set list to list(0, 1, 2)
+
+if b do
+	print(s)
+end
+
+set i to 0
+
+while i < 5 do
+	print(i)
+	set i to i + 1
+end
+
+def Vec3(x, y, z)
+	set v to tuple(x, y, z)
+	return v
+end
+
+def addVec3(a, b)
+	set x to at(a, 0) + at(b, 0)
+	set y to at(a, 1) + at(b, 1)
+	set z to at(a, 2) + at(b, 2)
+	
+	return Vec3(x, y, z)
+end
+
+x + x
+x - x
+x * x
+x / x
+
+a & b
+a | b
+a = b
+a != b
+
+a < b
+a <= b
+a > b
+a >= b
+
+' TODO
+' For
+set tuple to tuple(0, 1, 2, 3, 4)
+for n in tuple do
+	print(n)
+end
+
+' [] Brackets
+set tuple to tuple(0, 1, 2, 3, 4)
+for i in range(tuple) do
+	print(tuple[i])
+end
+
+' String escape characters
+set str to "\n\r\t\0"
+
+def m4x4(val) do
+	set col0 to tuple(val, val, val, val)
+	set col1 to tuple(val, val, val, val)
+	set col2 to tuple(val, val, val, val)
+	set col3 to tuple(val, val, val, val)
+	
+	return tuple(col0, col1, col2, col3)
+end
+
+set m to m4x4(0)
+set m[0][0] to m[1][1]
+
+' Tables
+set table to table(item("id", 5))
+set table["id"] to 5
+
+' () Brackets in expressions
+set i to (5 + g) / 2
+
+' Callbacks
+set func to @max
+def max(a, b) do
+	if a > b do
+		return a
+	end
+	return b
+end
+
+def filter(list, func) do
+	set newList to list()
+	
+	for n in list do
+		push(newList, func(n))
+	end
+	
+	return newList
+end
+
+' Varargs
+def addAll(items) do
+	set items to varArgs()
+
+	for n in items do
+		set sum to sum + n
+	end
+	
+	return sum
+end
+
+' Overloading
+
+
+' Imports
+import "math"
+
+	' Modules
+	module "util"
+	
+	' Standard Lib
+	module "main"
+	
+	def concat(strs) do
+		set strs to varArgs()
+		set str to at(strs, 0)
+		
+		for n in range(1, strs) do
+			set strs to strs + " " + str
+		end
+		return str
+	end
+	
+	def range(count) do
+		if typeof(count) != "int" do
+			set count to length(count)
+		end
+		return range(0, count)
+	end
+	
+	def range(offset, count) do
+		return range(offset, count, 1)
+	end
+	
+	def range(offset, count, step) do
+		if typeof(count) != "int" do
+			set count to length(count)
+		end
+	
+		set list to list()
+		set i to offset
+		
+		while i < count do
+			add(list, i)
+			
+			set i to i + step
+		end
+	end
+	
+	' Data Structures
+	' General
+	def indexOf(str, item) do
+		for i in range(str) do
+			set c to at(str, i)
+			
+			if c = item do
+				return i
+			end
+		end
+		return -1
+	end
+	
+	def length(struct)
+	def at(struct, index)
+	def setAt(stuct, index, item)
+	def typeof(value)
+	def assert(value, errMsg)
+	
+	' tuple
+	def tuple(items)
+	
+	' list
+	def list(items)
+	def push(list, item)
+	def remmove(list, item)
+	def pop(list)
+	def insert(list, index)
+	def contains(list, item)
+	
+	' table
+	def table(items)
+	def field(key, value)
+	def contains(table, key)
+	def add(table, key, value)
+	
+	' int/float
+	def pow(value, power)
+	def sqrt(value)
+	def sin(value)
+	def cos(value)
+	def tan(value)
+	
+	' Dynamic dispatch
+	module "dynamic"
+	
+	def call(func, args)
+	def eval(expr)
+	def getFuncInfo(funcName, attr)
+	
+	' File IO
+	module "IO"
+	
+	def fileRead(fileName)
+	def fileWrite(fileName, text)
+	def getRootDir()
+	def getChildDirs(dir)
+	def getDirName()
+	def getFiles(dir)
+	def getFileName(file)
+	
+	' Unity
+	module "unity"
+	
+	def vec3(x, y, z) do
+		return tuple(0, 1, 2)
+	end
+	
+	def vec3Add(a, b) do
+		return vec3(a[0] + b[0], a[1] + b[1], a[2] + b[2])
+	end
+	
+' Overloading
+
+' OOP
+
+def Vec3(x, y, z) do
+	set v to table()
+	
+	set v["z"] to x
+	set v["y"] to y
+	set v["z"] to z
+	
+	return v
+end
+
+set v to Vec3(0, 0, 0)
+set x to at(v, "x")
+setAt(v, "x", 55)
+
+// R-Code
+class Instr
+{
+	enum InstrType
+	{
+		Set,
+		
+		VarLoad, 
+		ConstLoad, 
+		Call, 
+		Op,
+		
+		If, 
+		While, 
+		Continue
+	};
+	object[] args;
+	int index;
+	
+	public Instr(InstrType type, params object[] args)
+	{
+		this.type = type;
+		this.args = args;
+	}
+}
+
+
+/*
+	Nop
+
+	Set dstAddr srcAddr
+	
+	LoadVar srcAddr
+	LoadConst src
+	Call funcName
+	Call_NR funcName NO_RETURN
+	OP opName
+	
+	If endInstr expr0 instr0 expr1 instr1
+	While endInstr expr instr
+	Continue instr(while)
+	Jump instr
+	
+	Args arg0 arg1 ...
+*/
+
+// Example
+def max(a, b) do
+	if a > b do
+		return a
+	end
+	return b
+end
+
+// VBL_IL
+max:
+	Args a b
+	Nop
+	LoadVar a
+	LoadVar b
+	Op ">"
+	If end start
+		start:Nop
+		Return a
+	end:Nop
+	
+	Return b
+	Return
+	
+// Example
+def indexOf(list, item) do
+	set i to 0
+	
+	while i < length(list) do
+		if at(list, i) = item do
+			return i
+		end
+		set i to i + 1
+	end
+	return -1
+end
+
+indexOf:
+	Args list item
+	Nop
+	
+	LoadConst 0
+	Set i
+	
+	head:Nop
+		LoadVar i
+		LoadVar list
+		Call "length"
+		Op "<"
+	While end
+		LoadVar list
+		LoadVar i
+		call "at"
+		LoadVar item
+		Op "="
+		
+		If "end" "start"
+			start:Nop
+			LoadVar i
+			Return
+		end:Nop
+		Continue head
+	end:Nop
+	
+	
+// Example
+
+def add(a, b) do
+	if typeof(a) = "int" do
+		return a
+	elif typeof(a) = "string" do
+		return a + b
+	else do
+		return b
+	end
+end
+
+// VBL_IL
+
+add:
+	Args a b
+	
+	LoadVar a
+	Call "typeof"
+	LoadConst "int"
+	Op "="
+	
+	LoadVar a
+	call "typeof"
+	LoadConst "string"
+	Op "="
+	
+	If "else" "start" "elif"
+		"start":Nop
+			LoadVar a
+			Return
+			Jump "end"
+		"elif":Nop
+			LoadVar a
+			LoadVar b
+			Op "+"
+			Return
+			Jump "end"
+		"else":Nop
+			LoadVar "b"
+			Return
+	"end":Nop
+
+// Example (Removing Stack Value)
+
+max(1, 5)
+
+// VBL_IL
+LoadConst 1
+LoadConst 5
+Call_NR "max"
+	
+// set s to x
+Instr varLoad = new Instr(InstrType.VarLoad, "x");
+Instr set = new Instr(InstrType.Set, "s");
+Instr ifStmnt = new Instr(InstrType.If, 
+
+
+
